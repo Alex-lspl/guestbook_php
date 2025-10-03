@@ -11,7 +11,7 @@ if ($_POST) {
         header('Location: index.php');
         exit;
     } else {
-        $error = "Пожалуйста, заполните все поля.";
+        $error = "Опа, заполните все поля.";
     }
 }
 ?>

@@ -14,7 +14,7 @@ $stmt = $pdo->query("SELECT * FROM messages ORDER BY created_at DESC");
 </head>
 <body>
 <div class="container">
-        <form method="POST">
+        <form method="POST" action="add.php">
             <input type="text" name="name" placeholder="Ваше имя" required>
             <textarea name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
             <button type="submit">Отправить</button>
@@ -23,15 +23,22 @@ $stmt = $pdo->query("SELECT * FROM messages ORDER BY created_at DESC");
         <h3>Сообщения (<?= count($messages) ?>):</h3>
         <?php if (empty($messages)): ?>
         <p>Пока нет сообщений. Не пиши сюда!</p>
-    <?php else: ?>
-        <?php foreach ($messages as $msg): ?>
-            <div class="message">
-            <div class="name">👤 <?= htmlspecialchars($msg['name']) ?></div>
-                <div><?= htmlspecialchars($msg['message']) ?></div>
-                <div class="date">🕗 <?= $msg['created_at'] ?></div>
-            </div>
+
+        <?php else: ?>
+            <?php foreach ($messages as $msg): ?>
+                <div class="message">
+                <div class="name">👤 <?= htmlspecialchars($msg['name']) ?></div>
+                    <div><?= htmlspecialchars($msg['message']) ?></div>
+                    <div class="date">🕗 <?= $msg['created_at'] ?>
+                    <a href="delete.php?id=<?= $msg['id'] ?>" 
+                    onclick="return confirm('Вы уверены, что хотите удалить это сообщение?')"
+                    style="color: red; margin-left: 15px; text-decoration: none;">
+                    Удалить
+            </a>
+        </div>
+        </div>
         <?php endforeach; ?>
-    <?php endif; ?>
+        <?php endif; ?>
     
 </div>
 </body>
