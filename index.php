@@ -35,7 +35,13 @@ $stmt = $pdo->query("SELECT * FROM messages ORDER BY created_at DESC");
                     style="color: red; margin-left: 15px; text-decoration: none;">
                     Удалить
             </a>
+            <h1></h1>
+        <form action="edit.php" method="GET" style="display: inline;">
+        <input type="hidden" name="id" value="<?= $msg['id'] ?>">
+        <button type="submit" class="btn btn-edit">Редактировать</button>
+        </form>
         </div>
+        
         </div>
         <?php endforeach; ?>
         <?php endif; ?>
